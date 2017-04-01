@@ -1,0 +1,80 @@
+<!-- .aside -->
+<aside class="bg-black dk aside hidden-print "  id="nav">
+  <section class="vbox">
+    <section class="w-f-md scrollable">
+      <div class="slim-scroll" data-height="auto" data-disable-fade-out="true" data-distance="0"
+           data-size="10px" data-railOpacity="0.2">
+
+        <!-- nav -->
+        <nav class="nav-primary hidden-xs">
+
+          <!--<ul class="nav bg clearfix">-->
+          <!--<li class="hidden-nav-xs padder m-t m-b-sm text-xs text-muted">-->
+          <!--微信-->
+          <!--</li>-->
+          <!--<li>-->
+          <!--<a href="index_index.html">-->
+          <!--<i class="icon-wrench  icon text-success"></i>-->
+          <!--<span class="font-bold">微信管理</span>-->
+          <!--</a>-->
+          <!--</li>-->
+          <!--<li>-->
+          <!--<a href="genres.html">-->
+          <!--<i class="icon-settings icon text-info"></i>-->
+          <!--<span class="font-bold">微信设置</span>-->
+          <!--</a>-->
+          <!--</li>-->
+
+          <!--<li class="m-b hidden-nav-xs"></li>-->
+          <!--</ul>-->
+          <ul class="nav" data-ride="collapse">
+              {% for i, v in controller.setup.MENU_GROUP%}
+              {% if i!= 0 and i != 99  %}
+              <li class="hidden-nav-xs padder m-t m-b-sm text-xs text-muted">
+                  <!-- <span class="pull-right"><a href="#{{ i }}"><i class="icon-plus i-lg"></i></a></span> -->
+                  {{ v }}
+
+              </li>
+              {% for v in controller.adminmenu[i] %}
+              {% if controller.tactive == v.url %}
+              <li class="active">{% else %}
+              <li>{% endif %}
+                <a href="javascript:void(0);" class="auto">
+                  <span class="pull-right text-muted">
+                    <i class="fa fa-angle-left text"></i>
+                    <i class="fa fa-angle-down text-active"></i>
+                  </span>
+                  {%if v.ico%}
+                  <i class="fa {{v.ico}}">
+                  </i>
+                  {%else%}
+                  <i class="icon-screen-desktop icon">
+                  </i>
+                  {%endif%}
+                  <span>{{v.title}}</span>
+                </a>
+                <ul class="nav dk text-sm">
+                  {% for c in v.children %}
+                  {% if controller.active == c.url %}
+                  <li class="active">{% else %}
+                  <li>{% endif %}
+                    <a href="/{{c.url}}" class="auto">
+                        <i class="fa fa-angle-right text-xs"></i>
+
+                        <span>{{c.title}}</span>
+                    </a>
+                  </li>
+                  {% endfor%}
+                </ul>
+              </li>
+              {% endfor%}
+              {% endif %}
+              {% endfor %}
+          </ul>
+        </nav>
+        <!-- / nav -->
+      </div>
+    </section>
+    
+  </section>
+</aside>
